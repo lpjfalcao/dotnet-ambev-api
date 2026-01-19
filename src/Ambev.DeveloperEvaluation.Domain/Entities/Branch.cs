@@ -4,8 +4,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Branch : BaseEntity
     {
-        public string Name { get; set; } = string.Empty;
-        public string Location { get; set; } = string.Empty;
+        public string Name { get; set; } = null!;
+        public string Location { get; set; } = null!;
 
         public virtual ICollection<Order> Orders { get; set; } = [];
     }
