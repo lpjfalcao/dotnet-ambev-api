@@ -1,0 +1,39 @@
+﻿using Ambev.DeveloperEvaluation.Domain.Common;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ambev.DeveloperEvaluation.Domain.Entities
+{
+    public class OrderItem : BaseEntity
+    {
+        public Guid ProductId { get; set; }
+        public virtual Product Product { get; set; } = null!;
+
+        public int Quantity { get; set; }
+
+        public decimal UnitPrice { get; set; }
+
+        public decimal Discount { get; set; }
+
+        [NotMapped]
+        public decimal TotalAmount { get; set; }
+
+        public Guid OrderId { get; set; }
+        public virtual Order Order { get; set; } = null!;
+
+        public decimal CalculateTotalAmount()
+        {
+            TotalAmount = UnitPrice * Quantity;
+            return TotalAmount;
+        }
+
+        public void CalculateTotalAmount(decimal discount)
+        {
+            TotalAmount = (UnitPrice * Quantity) - Discount;
+        }
+    }
+}
