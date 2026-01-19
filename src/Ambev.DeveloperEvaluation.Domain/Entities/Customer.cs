@@ -4,15 +4,10 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Customer : BaseEntity
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string Email { get; set; }
+        public string Email { get; set; } = string.Empty;
 
-        public virtual ICollection<Order> Orders { get; set; }
-
-        public Customer()
-        {
-            Orders = new List<Order>();
-        }
+        public virtual ICollection<Order> Orders { get; set; } = [];
     }
 }

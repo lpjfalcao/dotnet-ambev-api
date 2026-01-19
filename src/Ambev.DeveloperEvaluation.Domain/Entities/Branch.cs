@@ -1,19 +1,12 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Common;
-using System.ComponentModel.DataAnnotations;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class Branch : BaseEntity
     {
-        [Required]
-        public string Name { get; set; }
-        public string Location { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
 
-        public virtual ICollection<Order> Orders { get; set; }
-
-        public Branch()
-        {
-            Orders = new List<Order>();
-        }
+        public virtual ICollection<Order> Orders { get; set; } = [];
     }
 }
