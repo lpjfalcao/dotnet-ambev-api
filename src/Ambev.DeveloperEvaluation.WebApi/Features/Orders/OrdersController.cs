@@ -1,9 +1,11 @@
 ﻿using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrders;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders
 {
@@ -36,7 +38,31 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders
             var command = _mapper.Map<GetOrderCommand>(request.Id);
             var response = await _mediator.Send(command, cancellationToken);
 
-            return Ok(response);
+            return StatusCode((int)HttpStatusCode.OK, new ApiResponseWithData<GetOrderResponse>
+            {
+                Success = true,
+                Data = _mapper.Map<GetOrderResponse>(response)
+            });
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(PaginatedResponse<GetOrderResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetOrders([FromQuery] GetOrdersRequest request, CancellationToken cancellationToken)
+        {
+            var command = _mapper.Map<GetOrdersCommand>(request);
+
+            var response = await _mediator.Send(command, cancellationToken);
+
+            return StatusCode((int)HttpStatusCode.OK, new PaginatedResponse<GetOrderResponse>
+            {
+                Success = true,
+                Data = _mapper.Map<List<GetOrderResponse>>(response),
+                CurrentPage = response.CurrentPage,
+                TotalCount = response.TotalCount,
+                TotalPages = response.TotalPages
+            });
         }
     }
 }

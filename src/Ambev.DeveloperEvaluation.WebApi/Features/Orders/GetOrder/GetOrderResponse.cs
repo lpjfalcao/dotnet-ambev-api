@@ -7,19 +7,19 @@
         public DateOnly OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
         public bool IsCancelled { get; set; }
-        public CustomerResult Customer { get; set; } = null!;
-        public BranchResult Branch { get; set; } = null!;
+        public CustomerResponse Customer { get; set; } = null!;
+        public BranchResponse Branch { get; set; } = null!;
 
     }
 
-    public class CustomerResult
+    public class CustomerResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
     }
 
-    public class BranchResult
+    public class BranchResponse
     {
         public Guid Id { get; set; }
         public string Name { get; set; } = null!;
