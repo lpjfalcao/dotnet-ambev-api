@@ -4,5 +4,6 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
 {
     public interface ICustomerRepository : IRepositoryBase<Customer>
     {
+        Task<Customer?> GetCustomerSalesInfo(Guid id);
     }
 }

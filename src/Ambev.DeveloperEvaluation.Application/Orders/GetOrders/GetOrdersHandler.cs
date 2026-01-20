@@ -1,9 +1,10 @@
-﻿using Ambev.DeveloperEvaluation.Domain.Entities;
+﻿using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.Domain.Entities;
 using Ambev.DeveloperEvaluation.Domain.Repositories;
 using AutoMapper;
 using MediatR;
 
-namespace Ambev.DeveloperEvaluation.Application.Orders.GetOrder
+namespace Ambev.DeveloperEvaluation.Application.Orders.GetOrders
 {
     public class GetOrdersHandler : IRequestHandler<GetOrdersCommand, PaginatedList<GetOrderResult>>
     {

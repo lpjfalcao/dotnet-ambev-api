@@ -1,5 +1,8 @@
-﻿using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
+﻿using Ambev.DeveloperEvaluation.Application.Orders.CreateOrder;
+using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.Application.Orders.GetOrders;
 using Ambev.DeveloperEvaluation.WebApi.Common;
+using Ambev.DeveloperEvaluation.WebApi.Features.Orders.CreateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrders;
 using AutoMapper;
@@ -62,6 +65,29 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders
                 CurrentPage = response.CurrentPage,
                 TotalCount = response.TotalCount,
                 TotalPages = response.TotalPages
+            });
+        }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(ApiResponseWithData<CreateOrderResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CreateOrder([FromBody] CreateOrderRequest request, CancellationToken cancellationToken)
+        {
+            var validator = new CreateOrderRequestValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var command = _mapper.Map<CreateOrderCommand>(request);
+            var response = await _mediator.Send(command, cancellationToken);
+
+            return StatusCode((int)HttpStatusCode.OK, new ApiResponseWithData<CreateOrderResponse>
+            {
+                Success = true,
+                Message = "Seu pedido foi realizado com sucesso!",
+                Data = _mapper.Map<CreateOrderResponse>(response)
             });
         }
     }

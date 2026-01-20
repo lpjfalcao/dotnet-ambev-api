@@ -1,4 +1,5 @@
 ﻿using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
+using Ambev.DeveloperEvaluation.Application.Orders.GetOrders;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
 using AutoMapper;
 
