@@ -23,8 +23,8 @@ Este repositório armazena o projeto de avaliação da Ambev de uma REST API fei
 # Endpoints disponíveis
 Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 
-Listar pedidos - GET /api/orders
-Listar um pedido específico - endpoint: GET /api/orders/id
-Cadastrar um pedido: POST /api/orders
-Atualizar um pedido - endpoint: PUT /api/orders/id
-Remover um pedido - DELETE /api/orders/id
+- Listar pedidos - GET /api/orders
+- Listar um pedido específico - endpoint: GET /api/orders/id
+- Cadastrar um pedido: POST /api/orders
+- Atualizar um pedido - endpoint: PUT /api/orders/id
+- Remover um pedido - DELETE /api/orders/id
