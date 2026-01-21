@@ -61,6 +61,7 @@ public class Program
                 app.UseSwaggerUI();
             }
 
+            app.ConfigureExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseAuthentication();

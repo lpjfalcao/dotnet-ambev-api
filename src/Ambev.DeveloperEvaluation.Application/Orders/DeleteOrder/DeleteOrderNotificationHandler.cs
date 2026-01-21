@@ -1,5 +1,4 @@
-﻿using Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace Ambev.DeveloperEvaluation.Application.Orders.DeleteOrder
