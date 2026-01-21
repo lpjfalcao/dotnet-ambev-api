@@ -1,6 +1,7 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories
 {
@@ -73,9 +74,10 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return entity;
         }
 
-        public void Remove(T entity)
+        public async Task Remove(T entity)
         {
             this.context.Set<T>().Remove(entity);
+            await CommitAsync();
         }
 
         public async Task CommitAsync()

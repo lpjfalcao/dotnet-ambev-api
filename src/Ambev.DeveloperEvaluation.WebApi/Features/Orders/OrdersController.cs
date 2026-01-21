@@ -1,9 +1,11 @@
 ﻿using Ambev.DeveloperEvaluation.Application.Orders.CreateOrder;
+using Ambev.DeveloperEvaluation.Application.Orders.DeleteOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.GetOrders;
 using Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.CreateOrder;
+using Ambev.DeveloperEvaluation.WebApi.Features.Orders.DeleteOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrders;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.UpdateOrder;
@@ -113,6 +115,30 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders
                 Success = true,
                 Message = "Seu pedido foi atualizado com sucesso!",
                 Data = _mapper.Map<UpdateOrderResponse>(response)
+            });
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(ApiResponseWithData<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> DeleteOrder(Guid id, CancellationToken cancellationToken)
+        {
+            var request = new DeleteOrderRequest { Id = id };
+
+            var validator = new DeleteOrderRequestValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var command = _mapper.Map<DeleteOrderCommand>(request);
+            var response = await _mediator.Send(command, cancellationToken);
+
+            return StatusCode((int)HttpStatusCode.OK, new ApiResponseWithData<string>
+            {
+                Success = true,
+                Data = $"O pedido de id {request.Id} foi excluído com sucesso"
             });
         }
     }

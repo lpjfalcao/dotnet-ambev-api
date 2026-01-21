@@ -11,7 +11,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Repositories
         IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes);
         Task<T> Create(T entity);
         Task<T> Update(T entity);
-        void Remove(T entity);
+        Task Remove(T entity);
         Task CommitAsync();
     }
 }
