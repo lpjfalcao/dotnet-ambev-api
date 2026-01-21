@@ -37,8 +37,11 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain
             Assert.Throws<DomainException>(() => orderService.ApplyDiscount(newOrder, customer));
         }
 
-        [Fact]
-        public void ApplyDiscount_ShouldApplyTenPercentDiscount_WhenCustomerBuyMoreThan4IdenticalItems()
+        [Theory]
+        [InlineData(3, 1000, "d57fb151-b01a-44e8-bb5b-fec6225a83dc", "9a5fef4b-58c9-4885-89b8-4ff99308e577", 100)]
+        [InlineData(10, 1000, "d57fb151-b01a-44e8-bb5b-fec6225a83dc", "9a5fef4b-58c9-4885-89b8-4ff99308e577", 200)]
+        [InlineData(1, 1000, "d57fb151-b01a-44e8-bb5b-fec6225a83dc", "9a5fef4b-58c9-4885-89b8-4ff99308e577", 0)]
+        public void ApplyDiscount_ShouldApplyDiscount_WhenCustomerBuyMoreThan4IdenticalItems(int productQuantity, int unitPrice, string productId, string customerId, decimal discount)
         {
             // Arrange
             var orderService = new OrderService();
@@ -48,22 +51,22 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain
                 {
                     new()
                     {
-                        CustomerId = new Guid("9a5fef4b-58c9-4885-89b8-4ff99308e577"),
+                        CustomerId = new Guid(customerId),
                         OrderItems = new List<OrderItem>
                         {
-                            new() { ProductId = new Guid("d57fb151-b01a-44e8-bb5b-fec6225a83dc"), Quantity = 3, UnitPrice = 1000 }
+                            new() { ProductId = new Guid(productId), Quantity = productQuantity, UnitPrice = unitPrice }
                         }
                     }
                 }
             };
             var newOrder = new Order
             {
-                CustomerId = new Guid("9a5fef4b-58c9-4885-89b8-4ff99308e577"),
+                CustomerId = new Guid(customerId),
                 OrderItems = new List<OrderItem>
                 {
                     new()
                     {
-                        ProductId = new Guid("d57fb151-b01a-44e8-bb5b-fec6225a83dc"),
+                        ProductId = new Guid(productId),
                         Quantity = 1,
                         UnitPrice = 1000
 
@@ -75,7 +78,7 @@ namespace Ambev.DeveloperEvaluation.Unit.Domain
             orderService.ApplyDiscount(newOrder, customer);
 
             // Assert
-            Assert.Equal(100M, newOrder.OrderItems.First().Discount);
+            Assert.Equal(discount, newOrder.OrderItems.First().Discount);
         }
     }
 }
