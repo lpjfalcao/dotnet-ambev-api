@@ -24,7 +24,7 @@ namespace Ambev.DeveloperEvaluation.Application.Orders.GetOrder
             if (!validationResult.IsValid)
                 throw new ValidationException(validationResult.Errors);
 
-            var order = await _orderRepository.GetByConditionAsync(x => x.Id == request.Id, x => x.Branch, x => x.Customer);
+            var order = await _orderRepository.GetByConditionAsync(x => x.Id == request.Id, x => x.Branch, x => x.Customer, x => x.OrderItems);
 
             if (order == null)
                 throw new KeyNotFoundException($"O pedido de id: {request.Id} não foi encontrado");

@@ -19,7 +19,7 @@ namespace Ambev.DeveloperEvaluation.Application.Orders.GetOrders
 
         public async Task<PaginatedList<GetOrderResult>> Handle(GetOrdersCommand request, CancellationToken cancellationToken)
         {
-            var orders = _orderRepository.GetAll(x => x.Customer, x => x.Branch);
+            var orders = _orderRepository.GetAll(x => x.Customer, x => x.Branch, x => x.OrderItems);
 
             var paginatedList = await PaginatedList<Order>.CreateAsync(orders, request.PageNumber, request.PageSize);
             var results = _mapper.Map<List<GetOrderResult>>(paginatedList);

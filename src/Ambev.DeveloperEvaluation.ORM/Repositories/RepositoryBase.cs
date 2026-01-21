@@ -1,7 +1,6 @@
 ﻿using Ambev.DeveloperEvaluation.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Ambev.DeveloperEvaluation.ORM.Repositories
 {
@@ -12,14 +11,7 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
         public RepositoryBase(DefaultContext context)
         {
             this.context = context;
-        }
-
-        public async Task<T> Create(T entity)
-        {
-            this.context.Set<T>().Add(entity);
-            await CommitAsync();
-            return entity;
-        }
+        }        
 
         public IQueryable<T> GetListByCondition(Expression<Func<T, bool>> expression)
         {
@@ -67,9 +59,18 @@ namespace Ambev.DeveloperEvaluation.ORM.Repositories
             return query;
         }
 
-        public void Update(T entity)
+        public async Task<T> Create(T entity)
+        {
+            this.context.Set<T>().Add(entity);
+            await CommitAsync();
+            return entity;
+        }
+
+        public async Task<T> Update(T entity)
         {
             this.context.Set<T>().Update(entity);
+            await CommitAsync();
+            return entity;
         }
 
         public void Remove(T entity)

@@ -13,6 +13,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrders
             CreateMap<GetOrderResult, GetOrderResponse>();
             CreateMap<CustomerResult, CustomerResponse>();
             CreateMap<BranchResult, BranchResponse>();
+            CreateMap<GetOrderItemResult, OrderItemResponse>();
         }
     }
 }

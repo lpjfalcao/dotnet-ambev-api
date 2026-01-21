@@ -1,10 +1,12 @@
 ﻿using Ambev.DeveloperEvaluation.Application.Orders.CreateOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.Application.Orders.GetOrders;
+using Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Common;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.CreateOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrder;
 using Ambev.DeveloperEvaluation.WebApi.Features.Orders.GetOrders;
+using Ambev.DeveloperEvaluation.WebApi.Features.Orders.UpdateOrder;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -88,6 +90,29 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders
                 Success = true,
                 Message = "Seu pedido foi realizado com sucesso!",
                 Data = _mapper.Map<CreateOrderResponse>(response)
+            });
+        }
+
+        [HttpPut]
+        [ProducesResponseType(typeof(ApiResponseWithData<CreateOrderResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateOrder([FromBody] UpdateOrderRequest request, CancellationToken cancellationToken)
+        {
+            var validator = new UpdateOrderRequestValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var command = _mapper.Map<UpdateOrderCommand>(request);
+            var response = await _mediator.Send(command, cancellationToken);
+
+            return StatusCode((int)HttpStatusCode.OK, new ApiResponseWithData<UpdateOrderResponse>
+            {
+                Success = true,
+                Message = "Seu pedido foi atualizado com sucesso!",
+                Data = _mapper.Map<UpdateOrderResponse>(response)
             });
         }
     }

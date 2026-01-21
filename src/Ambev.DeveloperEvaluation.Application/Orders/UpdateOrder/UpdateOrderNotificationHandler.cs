@@ -1,20 +1,20 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Ambev.DeveloperEvaluation.Application.Orders.CreateOrder
+namespace Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder
 {
-    public class CreateOrderNotificationHandler : INotificationHandler<CreateOrderNotification>
+    public class UpdateOrderNotificationHandler : INotificationHandler<UpdateOrderNotification>
     {
-        private readonly ILogger<CreateOrderNotificationHandler> _logger;
+        private readonly ILogger<UpdateOrderNotificationHandler> _logger;
 
-        public CreateOrderNotificationHandler(ILogger<CreateOrderNotificationHandler> logger)
+        public UpdateOrderNotificationHandler(ILogger<UpdateOrderNotificationHandler> logger)
         {
             _logger = logger;
         }
 
-        public Task Handle(CreateOrderNotification notification, CancellationToken cancellationToken)
+        public Task Handle(UpdateOrderNotification notification, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Novo pedido cadastrado...");
+            _logger.LogInformation("Pedido atualizado...");
             _logger.LogInformation($"Id: {notification.Id}");
             _logger.LogInformation($"Cliente:{notification.CustomerName}");
             _logger.LogInformation($"Data da venda: {notification.OrderDate}");

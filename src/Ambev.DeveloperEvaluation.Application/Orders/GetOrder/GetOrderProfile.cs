@@ -8,6 +8,7 @@ namespace Ambev.DeveloperEvaluation.Application.Orders.GetOrder
         public GetOrderProfile()
         {
             CreateMap<Order, GetOrderResult>();
+            CreateMap<OrderItem, GetOrderItemResult>();
             CreateMap<Customer, CustomerResult>();
             CreateMap<Branch, BranchResult>();
         }

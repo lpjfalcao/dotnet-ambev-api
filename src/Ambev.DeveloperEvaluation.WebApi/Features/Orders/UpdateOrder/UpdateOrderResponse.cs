@@ -1,15 +1,15 @@
-﻿namespace Ambev.DeveloperEvaluation.Application.Orders.CreateOrder
+﻿namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders.UpdateOrder
 {
-    public class CreateOrderResult
+    public class UpdateOrderResponse
     {
         public Guid Id { get; set; }
         public DateOnly OrderDate { get; set; }
         public decimal TotalAmount { get; set; }
 
-        public IEnumerable<CreateOrderItemResult> OrderItems { get; set; } = [];
+        public IEnumerable<UpdateOrderItemResponse> OrderItems { get; set; } = [];
     }
 
-    public class CreateOrderItemResult
+    public class UpdateOrderItemResponse
     {
         public Guid ProductId { get; set; }
         public Guid OrderId { get; set; }
