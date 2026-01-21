@@ -29,7 +29,9 @@ namespace Ambev.DeveloperEvaluation.Domain.ServicesImp
                      .Where(customerOrderItem => customerOrderItem.ProductId == orderItem.ProductId)
                      .Any())
                 {
-                    discount = GetDiscount(countIdenticalItemsAtDatabase);
+                    var totalItems = countIdenticalItemsAtDatabase + orderItem.Quantity;
+
+                    discount = GetDiscount(totalItems);
                     orderItem.Discount = orderItem.CalculateTotalAmount() * discount;
                     orderItem.CalculateTotalAmount(orderItem.Discount);
                 }
