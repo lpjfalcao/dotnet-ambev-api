@@ -47,7 +47,7 @@ Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 
 # Testes Unitários
 
-Foi adicionado a classe **OrderServicerTests** para cobrir os cenários de validação das regras de negócio de disconto aplicados a venda:
+Foi adicionado a classe **OrderServiceTests** para cobrir os cenários de validação das regras de negócio de disconto aplicados a venda:
 <img width="996" height="148" alt="image" src="https://github.com/user-attachments/assets/0281bff1-e852-41c6-885c-32aa629721ce" />
 
 **Obs.: os demais testes já haviam no projeto e não fiz modificações neles** 
