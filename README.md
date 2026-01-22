@@ -14,10 +14,11 @@ Este repositório armazena o projeto de avaliação da Ambev de uma REST API fei
 
 # Configurando o banco de dados
 
-1) No arquivo **appsettings.json** descomente a string de conexão que aponta para localhost:5001 (que é a porta que será mapeada para dentro do container)
+1) No arquivo **appsettings.json** descomente a string de conexão que aponta para localhost:5001 (que é a porta que será mapeada para dentro do container) e comente a outra string que aponta para o DNS do container
+2) Defina como projeto de inicialização o projeto **Ambev.DeveloperEvaluation.WebApi**
 2) Abra o console de gerenciador de pacotes do nuget
-3) Selecione o projeto ORM
-4) Rode o comando update-database
+3) Selecione o projeto **Ambev.DeveloperEvaluation.ORM**
+4) Rode o comando **update-database** para criar as tabelas e gerar o seed
 
 **Obs.: para o comando funcionar você precisa ter instalado os pacotes Microsoft.EntityFrameworkCore.Design e Microsoft.EntityFrameworkCore.Tools**
 
