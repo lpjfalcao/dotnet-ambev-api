@@ -33,7 +33,7 @@ Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 - Listar pedidos - **GET /api/orders**
 - Listar um pedido específico - **GET /api/orders/id**
 - Cadastrar um pedido: **POST /api/orders**
-- Atualizar um pedido - **PUT /api/orders/id**
+- Atualizar um pedido - **PUT /api/orders**
 - Remover um pedido - **DELETE /api/orders/id**
 
 **Obs: os demais recursos (Users e Auth) já existiam no projeto e não fiz modificação neles**
