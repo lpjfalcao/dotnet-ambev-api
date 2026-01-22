@@ -35,3 +35,10 @@ Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 - Cadastrar um pedido: **POST /api/orders**
 - Atualizar um pedido - **PUT /api/orders/id**
 - Remover um pedido - **DELETE /api/orders/id**
+
+**Obs: os demais recursos (Users e Auth) já existiam no projeto e não fiz modificação neles**
+
+# Tratamento de erros
+
+Para fazer ot ratamento de erros no projeto ao invés de usar try catch em todos os handlers, foi adicionado um middleware para tratar erros de forma global na classe GlobalHandlerErrorMiddleware e sempre que uma exceção é lançada essa classe a intercepta e devolve uma resposta de erro padrão para o client que chamar a api
+
