@@ -8,8 +8,9 @@ Este repositório armazena o projeto de avaliação da Ambev de uma REST API fei
 # Configurando e rodando o projeto
 
 1) Abra uma linha de comando e clone o repositório rodando **git clone** https://github.com/lpjfalcao/dotnet-ambev-api.git
-2) Navegue até a pasta raiz do projeto e rode o comando **docker-compose up -d --build** para rodar a aplicação e levantar os serviços nos containeres do Docker
-3) Acesse a api via interface do swagger acessando no navegador http://localhost:5000/swagger/
+2) Certifique-se que a Docker engine esteja rodando na sua máquina
+3) Navegue até a pasta raiz do projeto e rode o comando **docker-compose up -d --build** para rodar a aplicação e levantar os serviços nos containeres do Docker
+4) Acesse a api via interface do swagger acessando no navegador http://localhost:5000/swagger/
 
 # Configurando o banco de dados
 
@@ -19,6 +20,11 @@ Este repositório armazena o projeto de avaliação da Ambev de uma REST API fei
 4) Rode o comando update-database
 
 **Obs.: para o comando funcionar você precisa ter instalado os pacotes Microsoft.EntityFrameworkCore.Design e Microsoft.EntityFrameworkCore.Tools**
+
+# Pré-requisitos
+- .NET SDK 8
+- Visual Studio 2022 ou superior
+- Docker desktop
 
 # Endpoints disponíveis
 Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
