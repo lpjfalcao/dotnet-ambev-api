@@ -45,8 +45,16 @@ Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 - OrderId: 5a7f0c01-2658-4f83-8dc1-f58cd207d0c6
 - ProductId: be957b3a-d67a-4402-8ca0-9c59d42a25c9
 
+# Testes Unitários
+
+Foi adicionado a classe **OrderServicerTest** para cobrir os cenários de validação das regras de negócio de disconto aplicados a venda:
+<img width="996" height="148" alt="image" src="https://github.com/user-attachments/assets/0281bff1-e852-41c6-885c-32aa629721ce" />
+
+**Obs.: os demais testes já haviam no projeto e não fiz modificações neles** 
 
 # Tratamento de erros
 
-Para fazer o tratamento de erros no projeto ao invés de usar try catch em todos os handlers, foi adicionado um middleware para tratar erros de forma global na classe GlobalHandlerErrorMiddleware e sempre que uma exceção é lançada essa classe a intercepta e devolve uma resposta de erro padrão para o client que chamar a api
+Para fazer o tratamento de erros no projeto ao invés de usar try catch em todos os handlers, foi adicionado um middleware para tratar erros de forma global na classe **GlobalHandlerErrorMiddleware** e sempre que uma exceção é lançada essa classe a intercepta e devolve uma resposta de erro padrão para o client que chamar a api.
+
+
 
