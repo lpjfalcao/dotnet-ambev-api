@@ -6,7 +6,7 @@ namespace Ambev.DeveloperEvaluation.Application.Orders.UpdateOrder
     {
         public UpdateOrderValidator()
         {
-            
+            RuleFor(x => x.Id).NotEmpty().WithMessage("O Id do cliente é um campo de preenchimento obrigatório");
         }
     }
 }

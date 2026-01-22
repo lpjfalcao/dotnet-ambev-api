@@ -7,7 +7,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Orders.CreateOrder
         public Guid CustomerId { get; set; }
         public Guid BranchId { get; set; }
         public DateOnly OrderDate { get; set; }
-        public bool IsCancelled { get; set; }
+        public bool? IsCancelled { get; set; }
 
         public IEnumerable<CreateOrderItemRequest> OrderItems { get; set; } = [];
     }
