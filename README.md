@@ -39,12 +39,11 @@ Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
 **Obs: os demais recursos (Users e Auth) já existiam no projeto e não fiz modificação neles**
 
 # Dados para testes
-Dados para teste:
 
-**CustomerId:** 9a5fef4b-58c9-4885-89b8-4ff99308e577 (Bruce Wayne)
-**BranchId:** f5af91f8-a4ef-4626-8828-928d852cf3f7 (Filial ABC - RJ)
-**OrderId:** 5a7f0c01-2658-4f83-8dc1-f58cd207d0c6
-**ProductId:** be957b3a-d67a-4402-8ca0-9c59d42a25c9
+** - CustomerId:** 9a5fef4b-58c9-4885-89b8-4ff99308e577 (Bruce Wayne)
+** - BranchId:** f5af91f8-a4ef-4626-8828-928d852cf3f7 (Filial ABC - RJ)
+** - OrderId:** 5a7f0c01-2658-4f83-8dc1-f58cd207d0c6
+** - ProductId:** be957b3a-d67a-4402-8ca0-9c59d42a25c9
 
 
 # Tratamento de erros
