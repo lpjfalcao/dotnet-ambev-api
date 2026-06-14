@@ -1,60 +1,40 @@
-# Developer Evaluation Project
+# 🚀 Developer Evaluation Project
 
-Este repositório armazena o projeto de avaliação da Ambev de uma REST API feita com ASP .NET e faz o uso de Clean Architecture, com o código organizado em camadas, cada qual com sua responsabilidade, garantindo o isolamento do domínio e fazendo o uso de padrões como Mediator e CQRS para a comunicação dos objetos do sistema com baixo acoplamento.
+A high-performance REST API developed for the Ambev evaluation process using **ASP.NET 8**. The project is strictly designed around **Clean Architecture** principles, enforcing a clear separation of concerns to guarantee domain isolation. It leverages cutting-edge patterns such as **Mediator** and **CQRS** to ensure decoupled object communication and high scalability.
 
-# Modelo Conceitual do Domínio
-<img width="1080" height="727" alt="domain_sales" src="https://github.com/user-attachments/assets/c158a0df-617c-4a10-9599-6fd649435a70" />
+<p align="center">
+  <img src="https://img.shields.io/badge/.NET_8-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8" />
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  <img src="https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=white" alt="Swagger" />
+</p>
 
-# Configurando e rodando o projeto
+---
 
-1) Abra uma linha de comando e clone o repositório rodando **git clone** https://github.com/lpjfalcao/dotnet-ambev-api.git
-2) Certifique-se que a Docker engine esteja rodando na sua máquina
-3) Navegue até a pasta raiz do projeto e rode o comando **docker-compose up -d --build** para rodar a aplicação e levantar os serviços nos containeres do Docker
-4) Acesse a api via interface do swagger acessando no navegador http://localhost:5000/swagger/
+## 🗺️ Conceptual Domain Model
 
-# Configurando o banco de dados
+The chart below outlines the structured domain architecture and relationship aggregates engineered for this solution:
 
-1) No arquivo **appsettings.json** descomente a string de conexão que aponta para localhost:5001 (que é a porta que será mapeada para dentro do container) e comente a outra string que aponta para o DNS do container
-2) Defina como projeto de inicialização o projeto **Ambev.DeveloperEvaluation.WebApi**
-2) Abra o console de gerenciador de pacotes do nuget
-3) Selecione o projeto **Ambev.DeveloperEvaluation.ORM**
-4) Rode o comando **update-database** para criar as tabelas e gerar o seed
+<p align="center">
+  <img width="1080" height="727" alt="domain_sales" src="https://github.com/user-attachments/assets/c158a0df-617c-4a10-9599-6fd649435a70" />
+</p>
 
-**Obs.: para o comando funcionar você precisa ter instalado os pacotes Microsoft.EntityFrameworkCore.Design e Microsoft.EntityFrameworkCore.Tools**
+---
 
-# Pré-requisitos
-- .NET SDK 8
-- Visual Studio 2022 ou superior
-- Docker desktop
+## 🛠️ Prerequisites
 
-# Endpoints disponíveis
-Foram adicionados os seguintes endpoints como parte do CRUD de vendas:
+Ensure you have the following installed on your development environment:
+* **.NET 8 SDK**
+* **Visual Studio 2022** (or superior) / JetBrains Rider
+* **Docker Desktop**
 
-- Listar pedidos - **GET /api/orders**
-- Listar um pedido específico - **GET /api/orders/id**
-- Cadastrar um pedido: **POST /api/orders**
-- Atualizar um pedido - **PUT /api/orders**
-- Remover um pedido - **DELETE /api/orders/id**
+---
 
-**Obs: os demais recursos (Users e Auth) já existiam no projeto e não fiz modificação neles**
+## ⚙️ Setting Up and Running the Project
 
-# Dados para testes
+Follow these steps to spin up the application infrastructure locally:
 
-- CustomerId: 9a5fef4b-58c9-4885-89b8-4ff99308e577 (Bruce Wayne)
-- BranchId: f5af91f8-a4ef-4626-8828-928d852cf3f7 (Filial ABC - RJ)
-- OrderId: 5a7f0c01-2658-4f83-8dc1-f58cd207d0c6
-- ProductId: be957b3a-d67a-4402-8ca0-9c59d42a25c9
-
-# Testes Unitários
-
-Foi adicionado a classe **OrderServiceTests** para cobrir os cenários de validação das regras de negócio de disconto aplicados a venda:
-<img width="996" height="148" alt="image" src="https://github.com/user-attachments/assets/0281bff1-e852-41c6-885c-32aa629721ce" />
-
-**Obs.: os demais testes já haviam no projeto e não fiz modificações neles** 
-
-# Tratamento de erros
-
-Para fazer o tratamento de erros no projeto ao invés de usar try catch em todos os handlers, foi adicionado um middleware para tratar erros de forma global na classe **GlobalHandlerErrorMiddleware** e sempre que uma exceção é lançada essa classe a intercepta e devolve uma resposta de erro padrão para o client que chamar a api.
-
-
-
+### 1. Clone the Repository
+Open your terminal and clone the repository:
+```bash
+git clone [https://github.com/lpjfalcao/dotnet-ambev-api.git](https://github.com/lpjfalcao/dotnet-ambev-api.git)
